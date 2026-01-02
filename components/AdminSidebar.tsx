@@ -114,9 +114,12 @@ export default function AdminSidebar() {
     <div className="w-64 bg-slate-800 text-white h-full min-h-screen overflow-y-auto relative">
       <div className="p-4 border-b border-slate-700">
         <div className="flex items-center gap-2 mb-2">
-          <div className="w-8 h-8 bg-white rounded flex items-center justify-center">
-            <span className="text-slate-800 font-bold text-sm">SS</span>
-          </div>
+          
+            <img
+              src="/favicon.ico"
+              alt="Site Supervise"
+              className="w-20 h-24 mr-4"
+            />
           <span className="font-bold text-sm">SITE SUPERVISE</span>
         </div>
         <div className="text-xs text-slate-400 mt-2">SUPER ADMIN DASHBOARD</div>

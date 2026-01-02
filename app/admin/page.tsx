@@ -1,4 +1,98 @@
+import {
+  Pencil,
+  Bell,
+  ChevronDown,
+  User,
+  Folder,
+  Layers,
+  Download,
+  ArrowUpRight,
+} from "lucide-react";
+
+const statsCards = [
+  {
+    title: "Active User",
+    value: "1,842",
+    badge: "Live",
+    badgeClass: "bg-green-500",
+    cardClass: "bg-gray-900 text-white",
+    textClass: "text-white",
+    border: "",
+    corner: "br", // bottom-right straight
+  },
+  {
+    title: "Live Projects",
+    value: "47",
+    badge: "Active",
+    badgeClass: "bg-red-500",
+    cardClass: "bg-white",
+    textClass: "text-gray-900",
+    border: "border-2 border-gray-200",
+    corner: "bl", // bottom-left straight
+  },
+  {
+    title: "System Health",
+    value: "98.7%",
+    badge: "Optimal",
+    badgeClass: "bg-green-500",
+    cardClass: "bg-white",
+    textClass: "text-gray-900",
+    border: "border-2 border-gray-200",
+    corner: "tr", // top-right straight
+  },
+  {
+    title: "Revenue Today",
+    value: "$12,450",
+    badge: "+12%",
+    badgeClass: "bg-green-500",
+    cardClass: "bg-white",
+    textClass: "text-gray-900",
+    border: "border-2 border-gray-200",
+    corner: "tl", // top-left straight
+  },
+];
+
+const systemMetrics = [
+  {
+    label: "API Response Time",
+    value: "85ms",
+    progress: 85,
+    barClass: "bg-green-500",
+  },
+  {
+    label: "Database Performance",
+    value: "98%",
+    progress: 98,
+    barClass: "bg-slate-900",
+  },
+  {
+    label: "File Storage",
+    value: "82% used",
+    progress: 82,
+    barClass: "bg-green-500",
+  },
+  {
+    label: "AR Processing Queue",
+    value: "45% load",
+    progress: 45,
+    barClass: "bg-red-500",
+  },
+  {
+    label: "AI Model Performance",
+    value: "99.2%",
+    progress: 99.2,
+    barClass: "bg-slate-900",
+  },
+];
+
+
 export default function AdminDashboardPage() {
+  const cornerClassMap: Record<string, string> = {
+    br: "rounded-xl rounded-br-none",
+    bl: "rounded-xl rounded-bl-none",
+    tr: "rounded-xl rounded-tr-none",
+    tl: "rounded-xl rounded-tl-none",
+  };
   const services = [
     {
       id: "auth",
@@ -12,231 +106,100 @@ export default function AdminDashboardPage() {
   ];
 
   return (
-    <div className="min-h-screen overflow-y-auto p-8">
+    <div className="min-h-screen overflow-y-auto">
       {/* Header */}
-      <div className="flex justify-between items-start mb-8">
+      <div className="flex justify-between items-center mb-8 bg-white px-8 py-16 w-full">
         <div>
-          <h1 className="text-sm font-semibold text-gray-600 mb-1">
+          <h1 className="text-3xl font-semibold text-gray-600 mb-1">
             Platform Command Center - Super Admin
           </h1>
         </div>
-        <div className="text-sm text-gray-600">Refresh: 10s</div>
+        <div className="text-sm text-gray-600 border p-6">Refresh: 10s</div>
       </div>
 
-      <div className="gap-6">
-        {/* Left Column - 2/3 width */}
-        <div className="space-y-6">
-          <div className="grid md:grid-cols-2 ">
+      <div className="gap-6 p-6 md:p-10 ">
+        <div className="space-y-16">
+          {/* KEY PLATFORM METRICS & SYSTEM HEALTH  */}
+          <div className="grid md:grid-cols-2 gap-3 mb-28 ">
             {/* Key Platform Metrics */}
-            <div className="rounded-lg p-6">
-              <h2 className="text-lg font-bold text-gray-900 mb-6">
+            <div className="rounded-lg col-span-1">
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">
                 KEY PLATFORM METRICS
               </h2>
 
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                {/* Active User Card */}
-                <div className="bg-gray-900 text-white rounded-xl p-6 relative overflow-hidden">
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="text-sm text-gray-400">Active User</span>
-                    <button className="text-gray-400 hover:text-white">
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+              <div className="grid grid-cols-2 gap-4 mb-6 h-full">
+                {statsCards.map((card) => (
+                  <div
+                    key={card.title}
+                    className={`
+                        ${card.cardClass}
+                        ${card.border}
+                        ${cornerClassMap[card.corner]}
+                        p-6 relative overflow-hidden flex flex-col justify-between
+                      `}
+                  >
+                    <div className="flex justify-between items-start mb-4">
+                      <span
+                        className={`text-sm ${
+                          card.cardClass.includes("bg-gray-900")
+                            ? "text-gray-400"
+                            : "text-gray-600"
+                        }`}
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                  <div className="text-5xl font-bold mb-2">1,842</div>
-                  <div className="inline-block bg-green-500 text-white text-xs px-2 py-1 rounded">
-                    Live
-                  </div>
-                </div>
+                        {card.title}
+                      </span>
 
-                {/* Live Projects Card */}
-                <div className="bg-white border-2 border-gray-200 rounded-xl p-6 relative">
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="text-sm text-gray-600">Live Projects</span>
-                    <button className="text-gray-400 hover:text-gray-600">
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                  <div className="text-5xl font-bold text-gray-900 mb-2">
-                    47
-                  </div>
-                  <div className="inline-block bg-red-500 text-white text-xs px-2 py-1 rounded">
-                    Active
-                  </div>
-                </div>
+                      <button className="text-gray-400 hover:text-gray-600">
+                        <ArrowUpRight className="w-8 h-8" />
+                      </button>
+                    </div>
 
-                {/* System Health Card */}
-                <div className="bg-white border-2 border-gray-200 rounded-xl p-6 relative">
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="text-sm text-gray-600">System Health</span>
-                    <button className="text-gray-400 hover:text-gray-600">
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                        />
-                      </svg>
-                    </button>
-                  </div>
-                  <div className="text-5xl font-bold text-gray-900 mb-2">
-                    98.7%
-                  </div>
-                  <div className="inline-block bg-green-500 text-white text-xs px-2 py-1 rounded">
-                    Optimal
-                  </div>
-                </div>
+                    <div
+                      className={`text-5xl font-bold mb-2 ${card.textClass}`}
+                    >
+                      {card.value}
+                    </div>
 
-                {/* Revenue Today Card */}
-                <div className="bg-white border-2 border-gray-200 rounded-xl p-6 relative">
-                  <div className="flex justify-between items-start mb-4">
-                    <span className="text-sm text-gray-600">Revenue Today</span>
-                    <button className="text-gray-400 hover:text-gray-600">
-                      <svg
-                        className="w-5 h-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"
-                        />
-                      </svg>
-                    </button>
+                    <div
+                      className={`inline-block ${card.badgeClass} text-white text-xs px-2 py-1 rounded-4xlKEY PLATFORM METRICS mt-4 w-18 text-center`}
+                    >
+                      {card.badge}
+                    </div>
                   </div>
-                  <div className="text-5xl font-bold text-gray-900 mb-2">
-                    $12,450
-                  </div>
-                  <div className="inline-block bg-green-500 text-white text-xs px-2 py-1 rounded">
-                    +12%
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
             {/* System Health Dashboard */}
-            <div className="rounded-lg p-6">
-              <h3 className="text-lg font-bold text-gray-900 mb-6">
-                SYSTEM HEALTH DASHBOARD
+            <div className="rounded-lg col-span-1 h-full">
+              <h3 className="text-3xl font-bold text-gray-900 mb-6">
+                REAL-TIME SYSTEM MONITOR
               </h3>
-              <div className="bg-white px-6 py-8 rounded-2xl shadow-sm">
+              <div className="bg-white px-6 py-8 rounded-2xl shadow-sm h-full">
+                <h4 className="text-lg font-bold text-gray-900 mb-6">
+                  SYSTEM HEALTH DASHBOARD
+                </h4>
                 <div className="space-y-6">
-                  <div className="flex items-center gap-4">
-                    <div className="w-44 text-sm text-gray-600">
-                      API Response Time
-                    </div>
-                    <div className="flex-1">
-                      <div className="w-full h-4 md:h-5 bg-gray-200 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-green-500 rounded-full"
-                          style={{ width: "85%" }}
-                        ></div>
+                  {systemMetrics.map((metric) => (
+                    <div key={metric.label} className="flex items-center gap-4">
+                      <div className="w-44 text-sm text-gray-600">
+                        {metric.label}
                       </div>
-                    </div>
-                    <div className="w-16 text-right text-sm text-gray-900">
-                      85ms
-                    </div>
-                  </div>
 
-                  <div className="flex items-center gap-4">
-                    <div className="w-44 text-sm text-gray-600">
-                      Database Performance
-                    </div>
-                    <div className="flex-1">
-                      <div className="w-full h-4 md:h-5 bg-gray-200 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-slate-900 rounded-full"
-                          style={{ width: "98%" }}
-                        ></div>
+                      <div className="flex-1">
+                        <div className="w-full h-8 md:h-10 bg-gray-200 rounded-full overflow-hidden">
+                          <div
+                            className={`h-full ${metric.barClass} rounded-full`}
+                            style={{ width: `${metric.progress}%` }}
+                          />
+                        </div>
                       </div>
-                    </div>
-                    <div className="w-16 text-right text-sm text-gray-900">
-                      98%
-                    </div>
-                  </div>
 
-                  <div className="flex items-center gap-4">
-                    <div className="w-44 text-sm text-gray-600">
-                      File Storage
-                    </div>
-                    <div className="flex-1">
-                      <div className="w-full h-4 md:h-5 bg-gray-200 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-green-500 rounded-full"
-                          style={{ width: "82%" }}
-                        ></div>
+                      <div className="w-16 text-right text-sm text-gray-900">
+                        {metric.value}
                       </div>
                     </div>
-                    <div className="w-16 text-right text-sm text-gray-900">
-                      82% used
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="w-44 text-sm text-gray-600">
-                      AR Processing Queue
-                    </div>
-                    <div className="flex-1">
-                      <div className="w-full h-4 md:h-5 bg-gray-200 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-red-500 rounded-full"
-                          style={{ width: "45%" }}
-                        ></div>
-                      </div>
-                    </div>
-                    <div className="w-16 text-right text-sm text-gray-900">
-                      45% load
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-4">
-                    <div className="w-44 text-sm text-gray-600">
-                      AI Model Performance
-                    </div>
-                    <div className="flex-1">
-                      <div className="w-full h-4 md:h-5 bg-gray-200 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-slate-900 rounded-full"
-                          style={{ width: "99.2%" }}
-                        ></div>
-                      </div>
-                    </div>
-                    <div className="w-16 text-right text-sm text-gray-900">
-                      99.2%
-                    </div>
-                  </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -463,13 +426,8 @@ atus */}
 
             <div className="mb-6">
               <div className="flex items-center gap-2 mb-4">
-                <svg
-                  className="w-5 h-5"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path d="M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z" />
-                </svg>
+                <Bell className="w-5 h-5 text-gray-900" />
+
                 <h3 className="text-sm font-semibold text-gray-900">
                   ACTIVE ALERTS (3)
                 </h3>
