@@ -3,8 +3,12 @@ import {
   Bell,
   ChevronDown,
   User,
-  Folder,
   Layers,
+  Boxes,
+  Search,
+  Upload,
+  SlidersHorizontal,
+  Folder,
   Download,
   ArrowUpRight,
 } from "lucide-react";
@@ -84,7 +88,6 @@ const systemMetrics = [
     barClass: "bg-slate-900",
   },
 ];
-
 
 export default function AdminDashboardPage() {
   const cornerClassMap: Record<string, string> = {
@@ -206,210 +209,158 @@ export default function AdminDashboardPage() {
           </div>
 
           {/* Real-time System Monitor */}
-          <div className="bg-white rounded-lg p-6">
-            <h3 className="text-sm font-semibold text-gray-900 mb-6">
-              LIVE SERVICE STATUS
+          <div className="bg-white rounded-2xl p-8">
+            <h3 className="text-sm font-semibold text-gray-900 mb-6 tracking-wide">
+              LIVE SERVICE STATUS:
             </h3>
 
-            {/* Live Service St              </div>
-atus */}
-            <div>
-              <ul className="space-y-3">
-                {services.map((s) => (
-                  <li key={s.id} className="text-sm">
-                    <div className="flex items-center justify-between mb-1">
-                      <span className="text-gray-900 font-medium">
-                        {s.name}
-                      </span>
-                      <span className="text-sm text-gray-600">{s.status}</span>
-                    </div>
-                    {s.detail && (
-                      <div className="text-gray-600 text-xs">{s.detail}</div>
-                    )}
-                  </li>
-                ))}
-              </ul>
+            {/* Service List */}
+            <ul className="space-y-4 text-sm text-gray-800">
+              <li className="flex gap-2">
+                <span>•</span>
+                <span>Authentication: Operational</span>
+              </li>
 
-              <div className="mt-4 flex gap-3">
-                <button className="inline-flex items-center px-3 py-2 bg-blue-600 text-white rounded-md text-sm hover:bg-blue-700">
-                  View Logs
-                </button>
-                <button className="inline-flex items-center px-3 py-2 border border-gray-300 rounded-md text-sm hover:bg-gray-50">
-                  Acknowledge Alerts
-                </button>
-              </div>
+              <li className="flex gap-2">
+                <span>•</span>
+                <span>AR Processing: Normal Queue (12 sec avg)</span>
+              </li>
+
+              <li className="flex gap-2">
+                <span>•</span>
+                <span>AI inference: 98ms response time</span>
+              </li>
+
+              <li className="flex gap-2">
+                <span>•</span>
+                <span>Database: Replication sync &lt;1s</span>
+              </li>
+
+              <li className="flex gap-2">
+                <span>•</span>
+                <span>File Storage: 82% capacity</span>
+              </li>
+            </ul>
+
+            {/* Actions */}
+            <div className="mt-10 flex gap-6 ">
+              <button className="bg-slate-900 text-white py-4 px-16 rounded-xl text-sm font-medium hover:bg-slate-800 transition">
+                View Detailed Health
+              </button>
+
+              <button className="bg-primary text-white py-4 px-16 rounded-xl text-sm font-medium hover:bg-primary/80 transition">
+                Run Diagnostics
+              </button>
             </div>
           </div>
 
           {/* Platform Activity Feed */}
-          <div className="">
+          <div className="rounded-2xl pb-16">
             <h2 className="text-lg font-bold text-gray-900 mb-6">
               PLATFORM ACTIVITY FEED
             </h2>
 
-            <div className="mb-6 bg-white rounded-tr-2xl rounded-bl-2xl p-6">
-              <h3 className="text-sm font-semibold text-gray-900 mb-4">
+            <div className="bg-white rounded-2xl p-8">
+              <h3 className="text-sm font-semibold text-gray-900 mb-6">
                 LIVE PLATFORM ACTIVITY
               </h3>
-              <div className="overflow-hidden">
-                <table className="w-full">
+
+              {/* Table */}
+              <div className="overflow-hidden border border-gray-200 rounded-lg">
+                <table className="w-full border-collapse">
                   <thead>
-                    <tr className="text-left text-sm text-gray-600 border-b border-gray-200">
-                      <th className="pb-3 font-semibold">TIME</th>
-                      <th className="pb-3 font-semibold">USER</th>
-                      <th className="pb-3 font-semibold">ACTION</th>
+                    <tr className="text-sm text-gray-600">
+                      <th className="px-6 py-4 text-left font-semibold border-b border-gray-200">
+                        TIME
+                      </th>
+                      <th className="px-6 py-4 text-left font-semibold border-b border-gray-200 border-l">
+                        USER
+                      </th>
+                      <th className="px-6 py-4 text-left font-semibold border-b border-gray-200 border-l">
+                        ACTION
+                      </th>
                     </tr>
                   </thead>
-                  <tbody className="text-sm">
-                    <tr className="border-b border-gray-100">
-                      <td className="py-3 text-gray-900">10:15</td>
-                      <td className="py-3 text-gray-900">Mike (ABC Tower)</td>
-                      <td className="py-3 text-gray-900">AI Scan Completed</td>
-                    </tr>
-                    <tr className="border-b border-gray-100">
-                      <td className="py-3 text-gray-900">10:12</td>
-                      <td className="py-3 text-gray-900">
-                        Sarah (River Bridge)
-                      </td>
-                      <td className="py-3 text-gray-900">
-                        AI prediction generated
-                      </td>
-                    </tr>
-                    <tr className="border-b border-gray-100">
-                      <td className="py-3 text-gray-900">10:10</td>
-                      <td className="py-3 text-gray-900">System</td>
-                      <td className="py-3 text-gray-900">Backup completed</td>
-                    </tr>
-                    <tr className="border-b border-gray-100">
-                      <td className="py-3 text-gray-900">10:08</td>
-                      <td className="py-3 text-gray-900">Client Portal</td>
-                      <td className="py-3 text-gray-900">Invoice paid</td>
-                    </tr>
-                    <tr className="border-b border-gray-100">
-                      <td className="py-3 text-gray-900">10:05</td>
-                      <td className="py-3 text-gray-900">Jane (Highway)</td>
-                      <td className="py-3 text-gray-900">
-                        AI reconfiguration exec
-                      </td>
-                    </tr>
-                    <tr>
-                      <td className="py-3 text-gray-900">10:00</td>
-                      <td className="py-3 text-gray-900">System</td>
-                      <td className="py-3 text-gray-900">
-                        Daily report generated
-                      </td>
-                    </tr>
+
+                  <tbody className="text-sm text-gray-900">
+                    {[
+                      ["10:15", "Mike (ABC Tower)", "AR Scan Completed"],
+                      [
+                        "10:12",
+                        "Sarah (River Bridge)",
+                        "AI prediction generated",
+                      ],
+                      ["10:10", "System", "Backup completed"],
+                      ["10:08", "Client Portal", "Invoice paid"],
+                      ["10:05", "Jane (Highway)", "AI reassignment exec"],
+                      ["10:00", "System", "Daily report generated"],
+                    ].map(([time, user, action], i) => (
+                      <tr key={i} className="last:border-b-0">
+                        <td className="px-6 py-3">{time}</td>
+                        <td className="px-6 py-3 border-l border-l-gray-200">
+                          {user}
+                        </td>
+                        <td className="px-6 py-3 border-l border-l-gray-200">
+                          {action}
+                        </td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               </div>
 
-              <div>
-                <h3 className="text-sm font-semibold text-gray-900 mb-4">
+              {/* Filters */}
+              <div className="mt-10">
+                <h4 className="text-sm font-semibold text-gray-900 mb-4">
                   FILTER ACTIVITY BY:
-                </h3>
-                <div className="grid grid-cols-2 gap-3">
-                  <button className="flex items-center justify-between px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50">
-                    <div className="flex items-center gap-2">
-                      <svg
-                        className="w-4 h-4"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" />
-                      </svg>
-                      <span>User Type</span>
-                    </div>
-                    <svg
-                      className="w-4 h-4"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                  <button className="flex items-center justify-between px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50">
-                    <div className="flex items-center gap-2">
-                      <svg
-                        className="w-4 h-4"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
-                        <path
-                          fillRule="evenodd"
-                          d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>Project</span>
-                    </div>
-                    <svg
-                      className="w-4 h-4"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                  <button className="flex items-center justify-between px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50">
-                    <div className="flex items-center gap-2">
-                      <svg
-                        className="w-4 h-4"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
-                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                      </svg>
-                      <span>Module</span>
-                    </div>
-                    <svg
-                      className="w-4 h-4"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
-                  <button className="flex items-center justify-between px-4 py-2 border border-gray-300 rounded-lg text-sm text-gray-700 hover:bg-gray-50">
-                    <div className="flex items-center gap-2">
-                      <svg
-                        className="w-4 h-4"
-                        fill="currentColor"
-                        viewBox="0 0 20 20"
-                      >
-                        <path
-                          fillRule="evenodd"
-                          d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
-                          clipRule="evenodd"
-                        />
-                      </svg>
-                      <span>Export Logs</span>
-                    </div>
-                    <svg
-                      className="w-4 h-4"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </button>
+                </h4>
+
+                <div className="space-y-4">
+                  {/* Row 1 */}
+                  <div className="flex gap-4">
+                    <button className="flex items-center justify-between px-4 py-2 border border-gray-300 rounded-xl text-sm text-gray-700 w-52">
+                      <div className="flex items-center gap-2">
+                        <User className="w-4 h-4" />
+                        <span>User Type</span>
+                      </div>
+                      <SlidersHorizontal className="w-4 h-4 text-gray-400" />
+                    </button>
+
+                    <button className="flex items-center justify-between px-4 py-2 border border-gray-300 rounded-xl text-sm text-gray-700 w-52">
+                      <div className="flex items-center gap-2">
+                        <Layers className="w-4 h-4" />
+                        <span>Project</span>
+                      </div>
+                      <SlidersHorizontal className="w-4 h-4 text-gray-400" />
+                    </button>
+
+                    <button className="flex items-center justify-between px-4 py-2 border border-gray-300 rounded-xl text-sm text-gray-700 w-52">
+                      <div className="flex items-center gap-2">
+                        <Boxes className="w-4 h-4" />
+                        <span>Module</span>
+                      </div>
+                      <SlidersHorizontal className="w-4 h-4 text-gray-400" />
+                    </button>
+                  </div>
+
+                  {/* Row 2 */}
+                  <div className="flex gap-4">
+                    <button className="flex items-center justify-between px-4 py-2 border border-gray-300 rounded-xl text-sm text-gray-700 w-52">
+                      <div className="flex items-center gap-2">
+                        <Search className="w-4 h-4" />
+                        <span>Search Activity</span>
+                      </div>
+                      <SlidersHorizontal className="w-4 h-4 text-gray-400" />
+                    </button>
+
+                    <button className="flex items-center justify-between px-4 py-2 border border-gray-300 rounded-xl text-sm text-gray-700 w-52">
+                      <div className="flex items-center gap-2">
+                        <Upload className="w-4 h-4" />
+                        <span>Export Logs</span>
+                      </div>
+                      <SlidersHorizontal className="w-4 h-4 text-gray-400" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -483,6 +434,17 @@ atus */}
                       Dismiss
                     </button>
                   </div>
+                </div>
+
+                {/* Actions */}
+                <div className="mt-10 flex gap-6 ">
+                  <button className="bg-slate-900 text-white py-4 px-16 rounded-xl text-sm font-medium hover:bg-slate-800 transition">
+                    View All Alerts
+                  </button>
+
+                  <button className="bg-primary text-white py-4 px-16 rounded-xl text-sm font-medium hover:bg-primary/80 transition">
+                    Configure Alert Rules
+                  </button>
                 </div>
               </div>
             </div>
