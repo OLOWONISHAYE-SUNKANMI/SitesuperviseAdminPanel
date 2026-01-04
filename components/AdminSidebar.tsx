@@ -37,7 +37,7 @@ const sidebarItems: SidebarItem[] = [
     icon: <Users className="w-5 h-5" />,
     label: "USER MANAGEMENT",
     children: [
-      { label: "User Directory", href: "/admin/user-directory" },
+      { label: "User Directory", href: "/admin/user-management" },
       { label: "Role Management", href: "/admin/role-management" },
       { label: "Permission Sets", href: "/admin/permission-sets" },
       { label: "User Analytics", href: "/admin/user-analytics" },
