@@ -47,10 +47,10 @@ const sidebarItems: SidebarItem[] = [
     icon: <FolderOpen className="w-5 h-5" />,
     label: "PROJECT MANAGEMENT",
     children: [
-      { label: "Active Directory", href: "/admin/projects/active" },
-      { label: "Project Archive", href: "/admin/projects/archive" },
-      { label: "Project Analytics", href: "/admin/projects/analytics" },
-      { label: "Project Templates", href: "/admin/projects/templates" },
+      { label: "Project Analytics", href: "/admin/project-management/#analytics" },
+      { label: "Active Directory", href: "/admin/project-management/#active" },
+      { label: "Project Archive", href: "/admin/project-management/#archive" },
+      { label: "Project Templates", href: "/admin/project-management/#templates" },
     ],
   },
   {
@@ -130,7 +130,7 @@ export default function AdminSidebar() {
   };
 
   return (
-    <div className="w-64 bg-[#0f172a] text-white flex flex-col h-screen">
+    <div className="w-72 bg-[#0f172a] text-white flex flex-col h-screen">
       {/* Header */}
       <div className="p-4 border-b border-gray-700">
         <div className="flex items-center gap-3">
