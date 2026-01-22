@@ -57,13 +57,13 @@ const sidebarItems: SidebarItem[] = [
     icon: <Settings className="w-5 h-5" />,
     label: "SYSTEM SETTINGS",
     children: [
-      { label: "General Settings", href: "/admin/settings/general" },
-      { label: "API & Integrations", href: "/admin/settings/api-integrations" },
+      { label: "General Settings", href: "/admin/settings/#general" },
+      { label: "API & Integrations", href: "/admin/settings/#integrations" },
       {
         label: "Security & Compliance",
-        href: "/admin/settings/security-compliance",
+        href: "/admin/settings/#security-compliance",
       },
-      { label: "Module Configuration", href: "/admin/settings/module-config" },
+      { label: "Module Configuration", href: "/admin/settings/#module-config" },
     ],
   },
   {

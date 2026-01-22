@@ -259,8 +259,8 @@ export default function ProjectManagementPage() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="bg-white rounded-3xl p-10 shadow-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-bold text-[#0A1B2E]">
-                Project Details: {selectedProject.name}
+              <h2 className="text-sm font-bold text-[#0A1B2E] uppercase tracking-wide">
+                📋 {selectedProject.name} - DETAILS
               </h2>
               <button
                 onClick={() => setSelectedProject(null)}
@@ -270,88 +270,72 @@ export default function ProjectManagementPage() {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-8">
-              {/* Project Details */}
+            <div className="space-y-8">
+              {/* Project Details Section */}
               <div>
-                <h3 className="flex items-center gap-2 font-semibold mb-4 text-sm">
-                  📋 PROJECT DETAILS
-                </h3>
-
-                <ul className="text-sm text-gray-600 space-y-2">
-                  <li>
-                    <strong>Name:</strong> {selectedProject.name}
-                  </li>
-                  <li>
-                    <strong>Company:</strong> {selectedProject.company}
-                  </li>
-                  <li>
-                    <strong>Location:</strong> 123 Main Street, Downtown
-                  </li>
-                  <li>
-                    <strong>Contract Value:</strong> $2.5M
-                  </li>
-                  <li>
-                    <strong>Team Size:</strong> 45 workers
-                  </li>
-                  <li>
-                    <strong>Equipment:</strong> 15 machines, 3 AR stations
-                  </li>
-                  <li>
-                    <strong>Timeline:</strong> 18 months (
-                    {selectedProject.progress}% complete)
-                  </li>
+                <ul className="text-sm text-gray-700 space-y-2 list-disc pl-5">
+                  <li>Client: {selectedProject.company}</li>
+                  <li>Value: $5.8M</li>
+                  <li>Timeline: Jan 2023 - Dec 2024</li>
+                  <li>Users: 42 active</li>
+                  <li>Storage: 245GB</li>
+                  <li>Last Backup: 08:00 AM Today</li>
+                  <li>API calls: 12,450/day avg</li>
+                  <li>AR Score: 842 completed</li>
                 </ul>
               </div>
 
-              {/* Project Health */}
+              {/* Project Settings Section */}
               <div>
-                <h3 className="flex items-center gap-2 font-semibold mb-4 text-sm">
-                  📊 PROJECT HEALTH
+                <h3 className="text-sm font-bold text-[#0A1B2E] mb-4 flex items-center gap-2">
+                  ⚙️ PROJECT SETTINGS:
                 </h3>
-
-                <ul className="text-sm text-gray-600 space-y-2 list-disc pl-5">
-                  <li>On Schedule: Yes</li>
-                  <li>Budget Status: 5% under</li>
-                  <li>Safety Incidents: 0</li>
-                  <li>Quality Score: 94/100</li>
-                  <li>Resource Utilization: 87%</li>
+                <ul className="text-sm text-gray-700 space-y-2 list-disc pl-5">
+                  <li>Module enabled: All</li>
+                  <li>AI features: Enabled</li>
+                  <li>Client Portal: Enabled</li>
+                  <li>Data retention: 7 years</li>
                 </ul>
               </div>
-            </div>
 
-            {/* Quick Actions */}
-            <div className="mb-6">
-              <h4 className="text-sm font-semibold mb-4">QUICK ACTIONS:</h4>
+              {/* Quick Actions Section */}
+              <div>
+                <h4 className="text-sm font-bold text-[#0A1B2E] mb-4 uppercase tracking-wide">
+                  QUICK ACTIONS:
+                </h4>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                <button className="bg-slate-900 text-white px-4 py-3 rounded-xl text-sm hover:bg-slate-800">
-                  View Timeline
-                </button>
-                <button className="bg-blue-600 text-white px-4 py-3 rounded-xl text-sm hover:bg-blue-700">
-                  Team Assignment
-                </button>
-                <button className="bg-slate-900 text-white px-4 py-3 rounded-xl text-sm hover:bg-slate-800">
-                  View Documents
-                </button>
-                <button className="bg-slate-900 text-white px-4 py-3 rounded-xl text-sm hover:bg-slate-800">
-                  Budget Report
-                </button>
-                <button className="bg-blue-600 text-white px-4 py-3 rounded-xl text-sm hover:bg-blue-700">
-                  View AR Site
-                </button>
-                <button className="bg-slate-900 text-white px-4 py-3 rounded-xl text-sm hover:bg-slate-800">
-                  Edit Project
-                </button>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <button className="bg-slate-900 text-white px-4 py-3 rounded-lg text-xs font-medium hover:bg-slate-800">
+                    View Analytics
+                  </button>
+                  <button className="bg-blue-600 text-white px-4 py-3 rounded-lg text-xs font-medium hover:bg-blue-700">
+                    Manage Users
+                  </button>
+                  <button className="bg-slate-900 text-white px-4 py-3 rounded-lg text-xs font-medium hover:bg-slate-800">
+                    Download Logs
+                  </button>
+                  <button className="bg-slate-900 text-white px-4 py-3 rounded-lg text-xs font-medium hover:bg-slate-800">
+                    Configure
+                  </button>
+                  <button className="bg-blue-600 text-white px-4 py-3 rounded-lg text-xs font-medium hover:bg-blue-700">
+                    Backup
+                  </button>
+                  <button className="bg-slate-900 text-white px-4 py-3 rounded-lg text-xs font-medium hover:bg-slate-800">
+                    Edit Tags
+                  </button>
+                </div>
               </div>
             </div>
 
             {/* Close Button */}
-            <button
-              onClick={() => setSelectedProject(null)}
-              className="w-full bg-gray-300 text-gray-800 px-4 py-3 rounded-xl text-sm font-medium hover:bg-gray-400"
-            >
-              Close
-            </button>
+            <div className="mt-8">
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="w-full bg-gray-300 text-gray-800 px-4 py-3 rounded-lg text-sm font-medium hover:bg-gray-400"
+              >
+                Close
+              </button>
+            </div>
           </div>
         </div>
       )}
